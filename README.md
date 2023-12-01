@@ -47,6 +47,8 @@ The ability to compare system states at different times is crucial for maintaini
 
 [windows]: https://www.microsoft.com/
 
+<br><br>
+
 ## Prerequisites
 
 - PowerShell environment on a Windows system.
