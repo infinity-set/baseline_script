@@ -127,6 +127,8 @@ PowerShell is instrumental in comparing system snapshots taken at different inte
    
 ## Program Walk-Through
 
+<br><br>
+
 <p align="center">
 <b>Launch PowerShell (as Administrator). Get/Set Execution Policy and run the file "baseline.ps1": </b>
 <br/>  
