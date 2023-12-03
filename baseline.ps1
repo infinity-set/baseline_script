@@ -35,6 +35,7 @@ $tasks = @(
     @{Name = "UserAccounts"; Command = { & net user }},
     @{Name = "Drivers"; Command = { & driverquery }},
     @{Name = "ScheduledTasks"; Command = { & schtasks /query /fo list }}
+    @{Name = "NetworkStats"; Command = { & netstat -anob }}
 )
 
 # Loop through each task

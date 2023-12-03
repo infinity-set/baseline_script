@@ -6,7 +6,6 @@
 
 Welcome to the Baseline Monitoring Script! This PowerShell script is designed to collect and save essential system information for monitoring purposes. It creates a structured set of directories and files containing details about tasks, system information, installed software, user accounts, drivers, scheduled tasks, and network configuration. Ideal for system administrators and IT professionals for system monitoring and auditing.
 
-
 ## Table of Contents
 
 - [Why Use This Script](#why-use-this-script)
@@ -19,7 +18,6 @@ Welcome to the Baseline Monitoring Script! This PowerShell script is designed to
 - [Customization Options](#customization-options)
 - [Comparative Analysis for Cybersecurity](#comparative-analysis-for-cybersecurity)
 - [Program Walk-Through](#program-walk-through)
-
 
 ## Why Use This Script
 
@@ -62,18 +60,23 @@ To run this script, you may need to set the PowerShell execution policy. This ca
 
 1. **RemoteSigned**: Allows running scripts signed by a trusted publisher.
 
-   ````powershell
+   ```powershell
    Set-ExecutionPolicy RemoteSigned
-   
+
+   ```
+
 2. **Unrestricted**: Allows running all scripts. Use with caution.
 
-   ````powershell
+   ```powershell
    Set-ExecutionPolicy Unrestricted
-   
+
+   ```
+
 3. **Bypass**: Temporarily bypasses the policy to run the script without changing the policy.
 
-   ````powershell
+   ```powershell
    PowerShell.exe -ExecutionPolicy Bypass -File .\baseline.ps1
+   ```
 
 <br>
 
@@ -81,10 +84,12 @@ To run this script, you may need to set the PowerShell execution policy. This ca
 
 - **Set Up Script**: Download the `baseline.ps1` script to your local machine.
 - **Run the Script**: Open PowerShell as an administrator, navigate to the script's directory, and execute the script.
-  
-   ````powershell
-   .\baseline.ps1
-   
+
+  ```powershell
+  .\baseline.ps1
+
+  ```
+
 - **Enter Reason**: When prompted, enter the reason for running this script. This will be recorded in the monitoring files.
 - **Review Outputs**: After the script completes, check the `$monitoringFolder` for the generated reports.
 
@@ -117,11 +122,10 @@ PowerShell is instrumental in comparing system snapshots taken at different inte
 
 3. **Compare Using PowerShell**: This command compares the contents of the installed software list from January 1st, 2023, and February 1st, 2023.
 
-   ````powershell
-   $File1 = Get-Content -Path "C:\Monitoring\20230101\InstalledSoftware_.txt"
-   $File2 = Get-Content -Path "C:\Monitoring\20230201\InstalledSoftware_.txt"
+   ```powershell
 
-   Compare-Object -ReferenceObject $File1 -DifferenceObject $File2
+   Compare-Object (Get-Content -Path "C:\Monitoring\20230101\InstalledSoftware_.txt") (Get-Content -Path "C:\Monitoring\20230201\InstalledSoftware_.txt")
+   ```
 
 <br>
    
