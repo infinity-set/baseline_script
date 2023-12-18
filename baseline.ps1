@@ -35,14 +35,15 @@ $tasks = @(
     @{Name = "UserAccounts"; Command = { & net user }},
     @{Name = "Drivers"; Command = { & driverquery }},
     @{Name = "ScheduledTasks"; Command = { & schtasks /query /fo list }}
-    @{Name = "NetworkStats"; Command = { & netstat -anob }}
+    @{Name = "NetworkStats"; Command = { & netstat -anob }},
+    @{Name = "Services"; Command = { & Get-Service | Select-Object -ExpandProperty Name }}
 )
 
 # Loop through each task
 foreach ($task in $tasks) {
     Write-Host "Gathering $($task.Name)"
-    $outputPath = Join-Path -Path $subFolder -ChildPath "$($task.Name)_$timestamp.txt"
-    
+    $outputPath = Join-Path -Path $subFolder -ChildPath "$($task.Name).txt"
+   
     if ($task.Name -eq "Services") {
         # Special handling for 'sc query' using Start-Process
         Start-Process -FilePath "sc" -ArgumentList "query" -NoNewWindow -RedirectStandardOutput $outputPath -Wait
@@ -54,7 +55,7 @@ foreach ($task in $tasks) {
 
 # Gathering Network Configuration
 Write-Host "Gathering Network Configuration"
-$ipconfigOutputPath = Join-Path -Path $subFolder -ChildPath "NetworkConfiguration_$timestamp.txt"
+$ipconfigOutputPath = Join-Path -Path $subFolder -ChildPath "NetworkConfiguration.txt"
 ipconfig /all > $ipconfigOutputPath
 
 # Display a message indicating that monitoring is complete
